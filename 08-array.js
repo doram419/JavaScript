@@ -87,3 +87,9 @@ fruits.sort((v1, v2) => {
         if(v1 == v2) return 0;
 });
 console.log(fruits);
+
+// 문자열 길이로 소팅
+fruits.sort((v1, v2) => {
+    return v1.length - v2.length;
+});
+console.log("문자열 길이로 소팅:", fruits);
