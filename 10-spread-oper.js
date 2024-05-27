@@ -39,3 +39,34 @@ let obj2 = { three:3, four:4, other: -1};
 
 console.log("obj1:", obj1);
 console.log("obj2:", obj2);
+
+// 기존 방식: 방법1
+combined={
+    one: obj1.one, 
+    two: obj1.two,
+    three: obj2.three,
+    four: obj2.four,
+    other: obj1.other
+}
+
+console.log("기존방식 1 :", combined);
+// 기존 방식: 방법2
+// combined = Object.assign({}, obj1, obj2);
+combined = Object.assign({}, obj2, obj1);
+console.log("기존방식 2 : ",combined);
+
+combined = {
+    ...obj1, // obj1의 모든 속성을 전개
+    ...obj2  // obj2의 모든 속성 전개
+    // 전개 순서에 유의
+};
+
+console.log("전개연산자 활용:", combined)
+
+// 특정 속성 제거
+delete combined.other;
+console.log(combined);
+
+// 객체 속성 전개
+let { one, three, five, ...rest} = combined;
+console.log(one, three, five, rest);
