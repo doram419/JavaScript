@@ -163,9 +163,9 @@ function testDataPipeline(){
             ...student,
             total : student.kor + student.eng + student.math
         }))
-        .filter()
-        .reduce()
-        
+        .filter(student => student.total >= 240)
+        .sort((a,b) => b.total - a.total)
+        .reduce((acc, student) => acc + student.total, 0) / 3
     );
 }
 

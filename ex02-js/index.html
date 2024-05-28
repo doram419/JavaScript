@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="KJH">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 과거에는 웹 표준이 없어서 이렇게 표시해줬음-->
+    <!-- <script lang="javascript"></script> -->
+
+    <!-- Page Script -->
+    <!-- <script>
+        let name = prompt("이름을 입력해주세요");
+    </script> -->
+
+    <!-- External Script -->
+    <!-- <script src="script/ask.js"></script> -->
+</head>
+
+<body>
+    <h1>Welcome</h1>
+
+    <h3>window 객체</h3>
+    <ul>
+        <li><a href="javascript:openWindow()"> 새 창 열기</a></li>
+        <li><a href="javascript:closeWindow()">열린 창 닫기</a></li>
+
+        <li>지금 브라우저의 크기는?</li>
+    </ul>
+    <!-- <script src="script/print.js"></script> -->
+
+    <script>
+        let newWin;
+
+        function openWindow(){
+            // 새 창 열기
+            // window.open("https://www.google.co.kr/?hl=ko");
+
+            // 새 창을 여는데 창 이름 설정 가능
+            // window.open(url, 창 이름, 창 속성); 
+            newWin = window.open("https://example.com", "newWin", "width=800, height=600, left=100, top=100");
+        }
+
+        function closeWindow(){
+            if(newWin !== undefined && !newWin.closed)
+                newWin.close();
+        }
+    </script>
+</body>
+
+</html>
