@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="KJH">
+    <meta name="description" content="phone shopping site practice with JavaScript">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <title>iPhones</title>
     <style>
         #product-info img.selected {
@@ -31,7 +33,8 @@
 
 <body>
     <div id="product-info">
-        <img id="main-image" src="images/iphone-xs.jpeg" class="selected" title="iPhones XS">
+        <img id="main-image" src="images/iphone-xs.jpeg" class="selected" 
+        title="iPhones XS" alt="It's brand new apple phone . flat, round corner">
         <h2>iPhone Xs</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -40,13 +43,45 @@
             anim id est laborum.</p>
         <h3>Products</h3>
         <ul id="product-list">
-            <li><img class="sub-image" src="/images/iphone-xs.jpeg" title="iPhone XS"></li>
-            <li><img class="sub-image" src="/images/iphone-xr.jpeg" title="iPhone XR"></li>
-            <li><img class="sub-image" src="/images/iphone8.jpeg" title="iPhone 8"></li>
-            <li><img class="sub-image" src="/images/ipad-mini.jpeg" title="iPad Mini"></li>
+            <li><img class="sub-image" src="images/iphone-xs.jpeg" title="iPhone XS"></li>
+            <li><img class="sub-image" src="images/iphone-xr.jpeg" title="iPhone XR"></li>
+            <li><img class="sub-image" src="images/iphone8.jpeg" title="iPhone 8"></li>
+            <li><img class="sub-image" src="images/ipad-mini.jpeg" title="iPad Mini"></li>
         </ul>
         <input type="text" id="keyword" /><button id="btn-search">검색</button>
     </div>
+
+    <script>
+        function testAttribute() {
+            // #main-image -> 속성 확인
+            let mainImage = document.getElementById("main-image");
+            console.log("#main-image", mainImage);
+            // 가지고 있는 모든 속성 확인
+            console.log(mainImage.getAttributeNames());
+            // 속성 조회 : getAttribute
+            // ID 속성 확인
+            console.log("id : ", mainImage.getAttribute("id"));
+            // 클래스 속성 확인
+            console.log("class : ", mainImage.getAttribute("class"));
+            // title 속성 확인
+            console.log("title : ", mainImage.getAttribute("title"));
+            // 속성 값 변경 : setAttribute
+            mainImage.setAttribute("title", `제품: ${mainImage.getAttribute("title")}`);
+            console.log("변경된 타이틀 : ", mainImage.getAttribute("title"));
+
+            // 하단에 있는 Products 이미지들의 title 속성도 변경해보자
+            let subs = document.getElementsByClassName("sub-image");
+            console.log(".sub-image : ", subs);
+
+            // 루프를 돌면서 속성 변경
+            for(let i = 0; i < subs.length; i++){
+                subs[i].setAttribute("title", `제품: ${subs[i].getAttribute("title")}`);
+                console.log("바뀐 title : ", subs[i].getAttribute("title"));
+            }
+        }
+
+        testAttribute();
+    </script>
 </body>
 
 </html>
