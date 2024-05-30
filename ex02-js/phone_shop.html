@@ -29,6 +29,8 @@
             height: 100px;
         }
     </style>
+    <!-- 외부 스크립트 연결 -->
+    <script src="phoneshop-vjs.js"></script>
 </head>
 
 <body>
@@ -50,38 +52,6 @@
         </ul>
         <input type="text" id="keyword" /><button id="btn-search">검색</button>
     </div>
-
-    <script>
-        function testAttribute() {
-            // #main-image -> 속성 확인
-            let mainImage = document.getElementById("main-image");
-            console.log("#main-image", mainImage);
-            // 가지고 있는 모든 속성 확인
-            console.log(mainImage.getAttributeNames());
-            // 속성 조회 : getAttribute
-            // ID 속성 확인
-            console.log("id : ", mainImage.getAttribute("id"));
-            // 클래스 속성 확인
-            console.log("class : ", mainImage.getAttribute("class"));
-            // title 속성 확인
-            console.log("title : ", mainImage.getAttribute("title"));
-            // 속성 값 변경 : setAttribute
-            mainImage.setAttribute("title", `제품: ${mainImage.getAttribute("title")}`);
-            console.log("변경된 타이틀 : ", mainImage.getAttribute("title"));
-
-            // 하단에 있는 Products 이미지들의 title 속성도 변경해보자
-            let subs = document.getElementsByClassName("sub-image");
-            console.log(".sub-image : ", subs);
-
-            // 루프를 돌면서 속성 변경
-            for(let i = 0; i < subs.length; i++){
-                subs[i].setAttribute("title", `제품: ${subs[i].getAttribute("title")}`);
-                console.log("바뀐 title : ", subs[i].getAttribute("title"));
-            }
-        }
-
-        testAttribute();
-    </script>
 </body>
 
-</html>
+</html> 
