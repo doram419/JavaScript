@@ -38,6 +38,44 @@
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.js" 
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" 
         crossorigin="anonymous"></script> -->
+    <script>
+        // 페이지 초기화
+        // JS : window.addEventListener("load", callback);
+        $(document).ready(event => {
+            // console.log(document);
+            // console.log($(document));   // 같은 document를 불렀지만 얘는 jQuery Wrapper 객체이다
+            
+            function testAttribute(){
+                // id가 main-image인 요소 선택하기
+                let mainImage = $("#main-image");
+                // console.log(mainImage);
+
+                // 속성 목록 확인 : getAttributeNames
+                // jQuery 포장을 Unwrapping 해줘야함
+                // console.log(mainImage[0].getAttributeNames());
+
+                // title 속성 조회
+                console.log("title : ", mainImage.attr("title"));
+                // title 속성 변경
+                mainImage.attr("title", 
+                    `제품: ${mainImage.attr("title")}`);
+                // 아래쪽의 Products들의 title 속성도 변경
+                let subs = $(".sub-image");
+                console.log(subs);
+
+                for(let i = 0; i < subs.length; i++)
+                {
+                    //내부에서 가져오면 JQuery객체가 아니다.
+                     //JQuery 객체로 쓰려면 재포장 필요
+                     $(subs[i]).attr("title", "제품:"+ $(subs[i]).attr("title"));
+                }
+
+            }
+            testAttribute();
+        });
+
+
+    </script>
 </head>
 
 <body>

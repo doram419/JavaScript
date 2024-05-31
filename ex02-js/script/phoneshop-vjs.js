@@ -12,7 +12,8 @@ function testAttribute() {
     // title 속성 확인
     console.log("title : ", mainImage.getAttribute("title"));
     // 속성 값 변경 : setAttribute
-    mainImage.setAttribute("title", `제품: ${mainImage.getAttribute("title")}`);
+    mainImage.setAttribute("title", 
+        `제품: ${mainImage.getAttribute("title")}`);
     console.log("변경된 타이틀 : ", mainImage.getAttribute("title"));
 
     // 하단에 있는 Products 이미지들의 title 속성도 변경해보자
