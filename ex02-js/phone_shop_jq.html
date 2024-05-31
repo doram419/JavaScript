@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="KJH">
+    <meta name="description" content="phone shopping site practice with JavaScript">
+    <meta name="keyword" contents="HTML CSS JavaScript JQuery"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+    <title>iPhones</title>
+    <style>
+        #product-info img.selected {
+            width: 225px;
+            height: 265px;
+            float: left;
+            border: 1px solid lightslategrey;
+            margin: 5px;
+        }
+
+        #product-list li {
+            list-style-type: none;
+            border: 1px solid lightslategrey;
+            margin: 5px;
+            float: left;
+        }
+
+        #product-list li img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <!-- 외부 스크립트 연결 -->
+    <!-- <script src="script/phoneshop-vjs.js"></script> -->
+    <!-- jQuery 라이브러리 : CDN 연결 -->
+    <script src="script/jquery-3.7.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.js" 
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" 
+        crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+    <div id="product-info">
+        <img id="main-image" src="images/iphone-xs.jpeg" class="selected" 
+        title="iPhones XS" alt="It's brand new apple phone . flat, round corner">
+        <h2>iPhone Xs</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+        <h3>Products</h3>
+        <ul id="product-list">
+            <li><img class="sub-image" src="images/iphone-xs.jpeg" title="iPhone XS"></li>
+            <li><img class="sub-image" src="images/iphone-xr.jpeg" title="iPhone XR"></li>
+            <li><img class="sub-image" src="images/iphone8.jpeg" title="iPhone 8"></li>
+            <li><img class="sub-image" src="images/ipad-mini.jpeg" title="iPad Mini"></li>
+        </ul>
+        <input type="text" id="keyword" /><button id="btn-search">검색</button>
+    </div>
+</body>
+
+</html> 
