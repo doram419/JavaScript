@@ -86,7 +86,7 @@ $(document).ready(event => {
                     tr.html(`
                             <td>${id}</td>
                             <td><img src="${poster}" class="poster"></td>
-                            <td><a href="./detail.html" target="_blank">${title}</a></td>
+                            <td>${title}</a></td>
                             <td>${director}</td>
                             <td>${year}</td>
                         `);
@@ -97,50 +97,21 @@ $(document).ready(event => {
                 console.log(error);
             }
         });
-
-        // let path = "http://127.0.0.1:3000/movies";
-        // fetch(path)
-        // .then(response => {
-        //     // console.log(response);
-        //     return response.json();
-        // })
-        // .then(data => {
-        //     $("#list").html();
-
-        //     let movies = data.movies;
-        //     console.log(movies);
-
-        //     const tHead = $("<tr>");
-        //             tHead.html(`
-        //                 <td>포스터</td>
-        //                 <td>제목</td>
-        //                 <td>감독</td>
-        //             `);
-        //             $("#list").append(tHead);
-
-        //     for(let i=0; i < movies.length; i++) {
-        //         let movie = movies[i];
-        //         let img = "http://127.0.0.1:3000/images/" + movie.image;
-        //         let title = movie.title;
-        //         let director = movie.director;
-
-        //         const tr = $("<tr>");
-        //         tr.html(`
-        //             <td><img src="${img}" class="poster"></td>
-        //             <td>${title}</td>
-        //             <td>${director}</td>
-        //         `);
-
-        //         $("#list").append(tr);
-        //         // console.log(movie);
-        //     }
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
-
-        // 실습 : 
-        // 개별 영화를 클릭하면 새 창에
-        // 영화 상세 정보를 받아와서 표시
     });
+
+    $("#list").on("click", "tr", event =>{
+        let win = window.open("detail.html", "새 창", "width = 500px, height=800px, scrollbar = yes");
+
+        $.ajax({
+            type: "Get",
+            url: "http://127.0.0.1:3000/movies",
+            dataType: "json",
+            success:function(response){
+                console.log(response);
+            },
+            error:function(error){
+                console.log(error);
+            }
+        });
+    })
 });
