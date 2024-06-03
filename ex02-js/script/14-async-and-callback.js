@@ -52,5 +52,42 @@ function testLogicPromise() {
         console.log("PROMISE reject:", reason);
     });
 }
+// testLogicPromise();
 
-testLogicPromise();
+// async / await
+// -> Promise를 손쉽게 사용하기 위한 키워드
+// async 함수는 비동기 처리를 위해 Promise를 생성한다
+async function f()
+{
+    console.log("aync function");
+    return 1;
+}
+
+// console.log(f());
+
+// 가상 시나리오:
+// 네트워크 통신을 통해 데이터를 가져온다는 가정
+function fetchData(){
+    return new Promise((resolve, reject) => {
+        setTimeout( ()=> {
+            resolve("서버로부터 가져온 데이터");
+        }, 2000);
+    });  
+}
+
+// async는 Promise를 만들어내는 키워드
+async function processData() {
+    console.log("데이터를 가져오는 중...");
+    try{
+        // Await 키워드 : Promise가 해결 될때까지 코드를 일시 중지시킴
+        //                  Promise가 해소되면, Promise의 결과값을 반환
+        // Await 키워드 함수를 사용을 위해 함수에 asyn가 붙어있어야 한다
+        const data = await fetchData();
+        console.log("가져온 데이터: ", data);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
+processData();

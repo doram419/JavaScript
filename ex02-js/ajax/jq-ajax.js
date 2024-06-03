@@ -46,98 +46,98 @@ $(document).ready(event => {
     $("#btnCallMovies").click(event => {
         // 서버가 가동되고 있다는 가정하에..
         // localhost:3000/movies -> json 받아오기
-        // $.ajax({
-        //     url: "http://127.0.0.1:3000/movies",
-        //     type: "GET",
-        //     dataType: "json",
-        //     success: function (response) {
-                    // $("#list").html(""); // 초기화 하지 않으면 계속 늘어남
-        //         // console.log(response);
+        $.ajax({
+            url: "http://127.0.0.1:3000/movies",
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                    $("#list").html(""); // 초기화 하지 않으면 계속 늘어남
+                // console.log(response);
 
-        //         // 영화 목록 정보
-        //         const movies = response.movies;
-        //         // console.log(movies);    // Array
+                // 영화 목록 정보
+                const movies = response.movies;
+                // console.log(movies);    // Array
 
-        //         // loop
-        //         const tHead = $("<tr>");
-        //             tHead.html(`
-        //                 <td>번호</td>
-        //                 <td>포스터</td>
-        //                 <td>제목</td>
-        //                 <td>감독</td>
-        //                 <td>개봉연도</td>
-        //             `);
-        //             $("#list").append(tHead);
-
-        //         for (let i = 0; i < movies.length; i++) {
-        //             // 개별 영화 정보 받아오기
-
-        //             let movie = movies[i];
-        //             // console.log(movie);
-        //             let id = movie.id;
-        //             let title = movie.title;
-        //             let director = movie.director;
-        //             let year = movie.year;
-        //             let poster = "http://127.0.0.1:3000/images/" + movie.image;
-
-        //             // console.log(title, director, poster);
-        //             // tr 요소를 생성 -> 정보 연결 -> table#list의 자식 요소로 추가
-        //             const tr = $("<tr>");
-        //             tr.html(`
-        //                     <td>${id}</td>
-        //                     <td><img src="${poster}" class="poster"></td>
-        //                     <td><a href="./detail.html" target="_blank">${title}</a></td>
-        //                     <td>${director}</td>
-        //                     <td>${year}</td>
-        //                 `);
-        //             $("#list").append(tr);
-        //         }
-        //     },
-        //     error: function (request, status, error) {
-        //         console.log(error);
-        //     }
-        // });
-
-        let path = "http://127.0.0.1:3000/movies";
-        fetch(path)
-        .then(response => {
-            // console.log(response);
-            return response.json();
-        })
-        .then(data => {
-            $("#list").html();
-
-            let movies = data.movies;
-            console.log(movies);
-
-            const tHead = $("<tr>");
+                // loop
+                const tHead = $("<tr>");
                     tHead.html(`
+                        <td>번호</td>
                         <td>포스터</td>
                         <td>제목</td>
                         <td>감독</td>
+                        <td>개봉연도</td>
                     `);
                     $("#list").append(tHead);
 
-            for(let i=0; i < movies.length; i++) {
-                let movie = movies[i];
-                let img = "http://127.0.0.1:3000/images/" + movie.image;
-                let title = movie.title;
-                let director = movie.director;
+                for (let i = 0; i < movies.length; i++) {
+                    // 개별 영화 정보 받아오기
 
-                const tr = $("<tr>");
-                tr.html(`
-                    <td><img src="${img}" class="poster"></td>
-                    <td>${title}</td>
-                    <td>${director}</td>
-                `);
+                    let movie = movies[i];
+                    // console.log(movie);
+                    let id = movie.id;
+                    let title = movie.title;
+                    let director = movie.director;
+                    let year = movie.year;
+                    let poster = "http://127.0.0.1:3000/images/" + movie.image;
 
-                $("#list").append(tr);
-                // console.log(movie);
+                    // console.log(title, director, poster);
+                    // tr 요소를 생성 -> 정보 연결 -> table#list의 자식 요소로 추가
+                    const tr = $("<tr>");
+                    tr.html(`
+                            <td>${id}</td>
+                            <td><img src="${poster}" class="poster"></td>
+                            <td><a href="./detail.html" target="_blank">${title}</a></td>
+                            <td>${director}</td>
+                            <td>${year}</td>
+                        `);
+                    $("#list").append(tr);
+                }
+            },
+            error: function (request, status, error) {
+                console.log(error);
             }
-        })
-        .catch(error => {
-            console.log(error);
         });
+
+        // let path = "http://127.0.0.1:3000/movies";
+        // fetch(path)
+        // .then(response => {
+        //     // console.log(response);
+        //     return response.json();
+        // })
+        // .then(data => {
+        //     $("#list").html();
+
+        //     let movies = data.movies;
+        //     console.log(movies);
+
+        //     const tHead = $("<tr>");
+        //             tHead.html(`
+        //                 <td>포스터</td>
+        //                 <td>제목</td>
+        //                 <td>감독</td>
+        //             `);
+        //             $("#list").append(tHead);
+
+        //     for(let i=0; i < movies.length; i++) {
+        //         let movie = movies[i];
+        //         let img = "http://127.0.0.1:3000/images/" + movie.image;
+        //         let title = movie.title;
+        //         let director = movie.director;
+
+        //         const tr = $("<tr>");
+        //         tr.html(`
+        //             <td><img src="${img}" class="poster"></td>
+        //             <td>${title}</td>
+        //             <td>${director}</td>
+        //         `);
+
+        //         $("#list").append(tr);
+        //         // console.log(movie);
+        //     }
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // });
 
         // 실습 : 
         // 개별 영화를 클릭하면 새 창에
