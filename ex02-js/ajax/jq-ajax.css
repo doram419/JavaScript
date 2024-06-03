@@ -1,5 +1,13 @@
 
-#list {
+#list, tr, td {
     width: 640;
-    border : 1px;
+    border-width : 1px;
+    border-style: solid;
+    border-color: black;
+    border-collapse: collapse;
+}
+
+.poster {
+    height: 100px;
+    width: 100px;
 }
