@@ -12,15 +12,40 @@
     <link rel="stylesheet"
         type="text/css"
         href="jq-ajax.css">
-
-    <script src = "/ex02-js/script/jquery-3.7.1.js">
-
+    <script src = "/ex02-js/script/jquery-3.7.1.js"></script>
+    <script>
+        // 페이지 초기화
+        $(document).ready(event => {
+            // #btnCallSnippet에 click 이벤트
+            $("#btnCallSnippet").on("click", event => {
+                // Ajax로 snippet.html을 호출한다($.ajax)
+                // option을 JavaScript 객체로 전달
+                $.ajax({
+                    url: "snippet.html",    // 호출할 url
+                    type: "GET",            // 요청의 타입(호출 방식)
+                    // data:                // 서버로 전송할 데이터
+                    dataType: "text",  // 응답의 데이터 타입
+                    // ...? dataType을 "html"로 하든 주석을 하든 상관이 없네?
+                    success: function(response){   // 성공 콜백
+                        // response -> 응답정보
+                        // console.log(response);
+                        $("#info").html(response);
+                    },
+                    error: function(request, status, error) {  // 실패 -> 에러 콜백
+                        // request: 요청 정보
+                        // status: 상태 정보
+                        // error 객체
+                        console.error(error);
+                    }
+                });
+            });
+        });
     </script>
 </head>
 <body>
     <button id="btnCallSnippet">HTML 조각 불러오기</button>
     <button id="btnCallMovies">영화 불러오기</button>
-    
+
     <!-- HTML 조각 불러와서 렌더링할 영역 -->
     <div id="info">
         <table id="list">
