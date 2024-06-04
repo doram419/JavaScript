@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SessionStorage and LocalStorage Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input,
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SessionStorage, LocalStorage Example</h1>
+
+    <h2>LocalStorage - User Settings</h2>
+    <label for="theme">Theme:</label>
+    <input type="text" id="theme" placeholder="e.g., dark">
+    <label for="fontSize">Font Size:</label>
+    <input type="text" id="fontSize" placeholder="e.g., medium">
+    <br />
+    <button id="saveLocalStorage">Save Settings</button>
+    <button id="readLocalStorage">Read Settings</button>
+    <button id="deleteLocalStorage">Delete Settings</button>
+    <div id="localStorageResult"></div>
+
+    <h2>SessionStorage - User Information</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="e.g., Alice">
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="e.g., alice@example.com">
+    <br />
+    <button id="saveSessionStorage">Save User Info</button>
+    <button id="readSessionStorage">Read User Info</button>
+    <button id="deleteSessionStorage">Delete User Info</button>
+    <div id="sessionStorageResult"></div>
+
+    <script>
+        // LocalStorage Handlers - User Settings
+        document.getElementById("saveLocalStorage")
+            .addEventListener("click", function(event) {
+                const theme = document
+                    .getElementById("theme").value;
+                const fontSize = document
+                    .getElementById("fontSize").value;
+                
+                if(theme && fontSize) {
+                    // 둘 다 세팅값이 있다면 localStorage에 저장!
+                    localStorage.setItem("theme", theme);
+                    localStorage.setItem("fontSize", fontSize);
+
+                    // document.getElementById("localStorageResult")
+                    //      .innerText = `Theme: ${theme}, FontSize: ${fontSize}`;
+                }
+                else{
+                    alert("테마와 폰트사이즈를 입력해 주세요");
+                }
+            });
+        document.getElementById("readLocalStorage")
+            .addEventListener("click", function(){
+            // theme, fontSize 값을 읽어와서 
+            // #localStorageResult에 출력
+                const theme = localStorage.getItem("theme");
+                const fontSize = localStorage.getItem("fontSize");
+
+                if(theme && fontSize)
+                {
+                    document.getElementById("localStorageResult")
+                        .innerText = `Theme : ${theme}, Fontsize : ${fontSize}`;
+                } else {
+                    document.getElementById("localStorageResult")
+                        .innerText = "설정을 찾을 수 없습니다.";
+                }
+            });
+
+            document.getElementById("deleteLocalStorage")
+            .addEventListener("click", function(){
+                //LocalStorage로부터 theme, fontSize를 삭제
+                localStorage.removeItem("theme");
+                localStorage.removeItem("fontSize");
+
+                document.getElementById("localStorageResult")
+                    .innerText = "설정이 삭제되었습니다.";
+            });
+
+        // SessionStorage Handlers - User Information
+        document.getElementById("saveSessionStorage")
+            .addEventListener("click", function(){
+                const name = document.getElementById("username").value;
+                const email = document.getElementById("email").value;
+
+                if(name && email){
+                    sessionStorage.setItem("username", name);
+                    sessionStorage.setItem("email", email);
+                } else {
+                    alret("이름과 이메일을 입력해주세요");
+                }
+            });
+
+        document.getElementById("readSessionStorage")
+            .addEventListener("click",function(){
+            
+            const name = sessionStorage.getItem("username");
+            const email = sessionStorage.getItem("email");
+
+            if(name && email){
+                document.getElementById("sessionStorageResult")
+                    .innerText = `Name: ${name}, email: ${email}`;
+            } else {
+                alret("설정을 찾을 수 없습니다.");
+            }
+        });
+
+        
+        document.getElementById("deleteSessionStorage")
+            .addEventListener("click",function(){
+
+            sessionStorage.removeItem("username");
+            sessionStorage.removeItem("email");
+
+            document.getElementById("sessionStorageResult")
+                    .innerText = "";
+        });
+
+    </script>
+</body>
+
+</html>

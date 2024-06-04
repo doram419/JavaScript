@@ -84,7 +84,7 @@ $(document).ready(event => {
                     // tr 요소를 생성 -> 정보 연결 -> table#list의 자식 요소로 추가
                     const tr = $("<tr>");
                     tr.html(`
-                            <td>${id}</td>
+                            <td class="movieId" id="movie${id}">${id}</td>
                             <td><img src="${poster}" class="poster"></td>
                             <td>${title}</a></td>
                             <td>${director}</td>
@@ -101,13 +101,15 @@ $(document).ready(event => {
 
     $("#list").on("click", "tr", event =>{
         let win = window.open("detail.html", "새 창", "width = 500px, height=800px, scrollbar = yes");
+        let id =event.target.parentElement.getElementsByClassName("movieId");
+        console.log(id);
 
         $.ajax({
             type: "Get",
             url: "http://127.0.0.1:3000/movies",
             dataType: "json",
             success:function(response){
-                console.log(response);
+                let data = response.movies;
             },
             error:function(error){
                 console.log(error);

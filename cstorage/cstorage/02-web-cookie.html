@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input,
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cookie Example</h1>
+
+    <h2>Set Cookie</h2>
+    <label for="cookieUsername">Username:</label>
+    <input type="text" id="cookieUsername" placeholder="e.g., Alice">
+    <label for="cookieRole">Role:</label>
+    <input type="text" id="cookieRole" placeholder="e.g., Editor">
+    <button id="setCookie">Set Cookie</button>
+
+    <h2>Read Cookie</h2>
+    <button id="readCookie">Read Cookie</button>
+    <div id="cookieResult"></div>
+
+    <h2>Delete Cookie</h2>
+    <button id="deleteCookie">Delete Cookie</button>
+
+    <script>
+        // 쿠키 설정 함수
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // 쿠키 읽기 함수
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // 쿠키 삭제 함수
+        function eraseCookie(name) {
+            document.cookie = name + '=; Max-Age=-99999999; path=/';
+        }
+
+        // Set Cookie 버튼 클릭 이벤트
+        document.getElementById('setCookie')
+            .addEventListener('click', function () {
+            // #cookieUsername, #cookieRole 값을 가져오기
+            const username = 
+                document.getElementById("cookieUsername").value;
+            const role =
+                document.getElementById("cookieRole").value;
+            
+            if(username)
+                setCookie("username", username, 7);
+
+            if(role)
+                setCookie("role", role, 7);
+
+            alert("Cookie가 설정 됨 : " + username + " , " + role);
+        });
+
+        // Read Cookie 버튼 클릭 이벤트
+        document.getElementById('readCookie')
+            .addEventListener('click', function () {
+            // Cookie에서 username, role 값을 읽어와서
+            // #cookieResult인 div에 표시하도록 하자
+            const username = getCookie("username");
+            const role = getCookie("role");
+            let message = "";
+
+            if(username)
+                message += `Username : ${username}, `;
+            if(role)
+                message += `Role : ${role}`;
+            
+            document.getElementById("cookieResult")
+                .innerText = message;
+        });
+
+        // Delete Cookie 버튼 클릭 이벤트
+        document.getElementById('deleteCookie')
+            .addEventListener('click', function () {
+            // username, role 쿠키 삭제
+            eraseCookie("username");
+            eraseCookie("role");
+
+            alert("쿠키가 삭제되었습니다: username, role");
+            document.getElementById("cookieResult").innerText = "";
+           
+        });
+    </script>
+</body>
+
+</html>
